@@ -10,34 +10,6 @@ const isRoot = true;
 /** @type EslintIgnorePatterns */
 const ignorePatterns = ["dist", "**/*.d.ts", "node_modules"];
 
-/**
- * This is the Override to support Jest for the tests directory. If not using
- * jest, feel free to remove it.
- * @type ConfigOverride
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const jestOverride = {
-	// Jest Stuff! only applies to files in tests folder
-	files: ["tests/**"],
-	plugins: ["jest"],
-	env: {
-		"jest/globals": true,
-	},
-	rules: {
-		// See documentation at https://www.npmjs.com/package/eslint-plugin-jest#rules
-		"jest/consistent-test-it": "error",
-		"jest/no-deprecated-functions": "error",
-		"jest/no-done-callback": "warn",
-		"jest/no-export": "warn",
-		"jest/no-identical-title": "warn",
-		"jest/no-standalone-expect": "error",
-		"jest/valid-describe-callback": "error",
-		"jest/valid-expect": "error",
-		"jest/valid-expect-in-promise": "error",
-		"jest/valid-title": "warn",
-	},
-};
-
 /** @type EslintRules */
 const jsRules = {
 	// See documentation at https://eslint.org/docs/latest/rules/
@@ -254,26 +226,6 @@ const tsRules = {
 	"@typescript-eslint/triple-slash-reference": "error",
 	"@typescript-eslint/switch-exhaustiveness-check": "warn",
 	"@typescript-eslint/unified-signatures": "warn",
-	// From eslint-plugin-functional
-	"functional/prefer-immutable-types": [
-		"error",
-		{
-			enforcement: "ReadonlyShallow",
-			ignoreInferredTypes: true,
-			ignoreClasses: false,
-			// Allow mutable, mutableValue, mut, or mutVal, and elements
-			ignoreNamePattern: ["mut(able)?([A-Z].*)?", "HTML.*", "^elem(ent)?$"],
-			// Allow Mutable, MutableType, Mut, MutType, as well as elements
-			ignoreTypePattern: ["Mut(able)?([A-Z].*)?", "HTML.*", "^Element$"],
-
-			variables: {
-				ignoreInFunctions: true,
-			},
-			returnTypes: {
-				enforcement: "None",
-			},
-		},
-	],
 };
 /** @type EslintRules */
 const extendsRulesOverrides = {
@@ -297,7 +249,7 @@ const config = {
 		browser: true,
 		node: true,
 	},
-	plugins: ["@typescript-eslint", "functional"],
+	plugins: ["@typescript-eslint"],
 	extends: [
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
